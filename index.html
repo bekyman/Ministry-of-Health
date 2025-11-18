@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -45,10 +44,8 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main-content">
         <div class="container">
-            <!-- Hero Section -->
             <section class="hero">
                 <h1 class="lang-en">Welcome to MoH Cafeteria</h1>
                 <h1 class="lang-am">እንኳን ወደ ጤና ሚኒስቴር ካፌቴሪያ በደህና መጡ</h1>
@@ -70,7 +67,6 @@
                 </div>
             </section>
 
-            <!-- Features Section -->
             <section class="features">
                 <div class="section-title">
                     <h2 class="lang-en">Cafeteria Services</h2>
@@ -103,15 +99,12 @@
                         </div>
                         <h3 class="lang-en">Fresh & Healthy</h3>
                         <h3 class="lang-am">ትኩስ እና ጤናማ</h3>
-                        <!--p class="lang-en">Traditional Ethiopian cuisine and international dishes prepared fresh daily. Nutritious meals to keep our healthcare workers energized.</p>
-                        
-                         
+                        <p class="lang-en">Traditional Ethiopian cuisine and international dishes prepared fresh daily. Nutritious meals to keep our healthcare workers energized.</p>
                         <p class="lang-am">ባህላዊ የኢትዮጵያ ምግቦች እና ዓለም አቀፍ ምግቦች በየቀኑ ትኩስ ይዘጋጃሉ። የጤና ሠራተኞቻችንን ኃይለኛ ለማድረግ ማጣቃሚያ ምግቦች።</p>
                     </div>
-                </div-->
+                </div>
             </section>
 
-            <!-- Menu Section -->
             <section class="menu-section">
                 <div class="menu-header">
                     <div class="section-title" style="text-align: left; margin-bottom: 0;">
@@ -129,11 +122,40 @@
                     </div>
                 </div>
                 <div class="menu-grid" id="menuGrid">
-                    <!-- Menu items will be dynamically added here -->
+                    </div>
+            </section>
+            
+            <section class="cart-section">
+                <div class="section-title">
+                    <h2 class="lang-en">Your Current Order</h2>
+                    <h2 class="lang-am">የእርስዎ የአሁን ትዕዛዝ</h2>
+                    <p class="lang-en">Items added to your cart for real-time tracking</p>
+                    <p class="lang-am">ለቀጥታ መከታተያ ወደ ጋሪዎ የተጨመሩ እቃዎች</p>
+                </div>
+                <div class="cart-container">
+                    <div id="cartItemsList" class="cart-items-list">
+                        </div>
+                    <div class="cart-summary">
+                        <h3 class="lang-en">Order Summary</h3>
+                        <h3 class="lang-am">የትዕዛዝ ማጠቃለያ</h3>
+                        <div class="summary-line">
+                            <span class="lang-en">Subtotal:</span>
+                            <span class="lang-am">ጠቅላላ ዋጋ:</span>
+                            <span id="cartSubtotal">0 ETB</span>
+                        </div>
+                        <div class="summary-line total-line">
+                            <span class="lang-en">Total:</span>
+                            <span class="lang-am">ድምር:</span>
+                            <span id="cartTotal">0 ETB</span>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-paper-plane"></i>
+                            <span class="lang-en">Place Order</span>
+                            <span class="lang-am">ትዕዛዝ አስገባ</span>
+                        </button>
+                    </div>
                 </div>
             </section>
-
-            <!-- Services Section -->
             <section class="services">
                 <div class="section-title">
                     <h2 class="lang-en">Why Choose Our System</h2>
@@ -183,7 +205,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -241,7 +262,6 @@
         </div>
     </footer>
 
-    <!-- Sign In Modal -->
     <div class="modal" id="signInModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -293,7 +313,6 @@
         </div>
     </div>
 
-    <!-- Sign Up Modal -->
     <div class="modal" id="signUpModal">
         <div class="modal-content">
             <div class="modal-header">
