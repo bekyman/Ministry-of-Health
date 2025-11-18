@@ -1,981 +1,394 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoH Cafeteria Management System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#5D5CDE',
-                        'primary-dark': '#4c4bc9',
-                    }
-                }
-            }
-        }
-    </script>
+    <title>Ministry of Health - Cafeteria Management System</title>
+    <link rel="stylesheet" href="hahu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="h-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-    <!-- Navigation -->
-    <nav class="bg-primary dark:bg-primary-dark shadow-lg">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                            <span class="text-primary font-bold text-xl">MoH</span>
-                        </div>
-                        <div>
-                            <h1 class="text-white font-bold text-lg">Cafeteria Management</h1>
-                            <p class="text-blue-100 text-xs">Ministry of Health - Ethiopia</p>
-                        </div>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="FB_IMG_MOH.jpg" alt="Ministry of Health">
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="lang-en">Ministry of Health</h1>
+                        <h1 class="lang-am">ጤና ሚኒስቴር</h1>
+                        <p class="lang-en">Digital Cafeteria Management System</p>
+                        <p class="lang-am">ዲጂታል ካፌቴሪያ አስተዳደር ስርዓት</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-4">
-                    <select id="userRole" class="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2 rounded-lg text-sm">
-                        <option value="customer">Customer</option>
-                        <option value="cashier">Cashier</option>
-                        <option value="kitchen">Kitchen Staff</option>
-                        <option value="inventory">Inventory Manager</option>
-                        <option value="admin">System Admin</option>
-                        <option value="management">Management</option>
-                    </select>
-                    <div class="text-white">
-                        <i class="fas fa-user-circle text-2xl"></i>
+                <div class="header-controls">
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="am">አማ</button>
+                    </div>
+                    <div class="auth-buttons">
+                        <button class="btn btn-primary" id="signInBtn">
+                            <i class="fas fa-sign-in-alt"></i> 
+                            <span class="lang-en">Sign In</span>
+                            <span class="lang-am">ግባ</span>
+                        </button>
+                        <button class="btn btn-secondary" id="signUpBtn">
+                            <i class="fas fa-user-plus"></i> 
+                            <span class="lang-en">Sign Up</span>
+                            <span class="lang-am">ተመዝገብ</span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="flex h-screen pt-16">
-        <!-- Sidebar -->
-        <div class="w-64 bg-gray-100 dark:bg-gray-800 shadow-lg">
-            <div class="p-4">
-                <div class="space-y-2">
-                    <button onclick="showSection('dashboard')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-tachometer-alt mr-3"></i>Dashboard
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1 class="lang-en">Welcome to MoH Cafeteria</h1>
+                <h1 class="lang-am">እንኳን ወደ ጤና ሚኒስቴር ካፌቴሪያ በደህና መጡ</h1>
+                <p class="lang-en">Ministry of Health - Ethiopia Digital Cafeteria Management System</p>
+                <p class="lang-am">ጤና ሚኒስቴር - ኢትዮጵያ ዲጂታል ካፌቴሪያ አስተዳደር ስርዓት</p>
+                <p class="lang-en">Experience modern cafeteria services with our digital platform. Order your favorite meals, track your orders in real-time, and enjoy subsidized pricing for Ministry employees.</p>
+                <p class="lang-am">ዘመናዊ ካፌቴሪያ አገልግሎቶችን በዲጂታል መድረካችን ያግኙ። የሚፈልጉትን ምግቦች ይዘዙ፣ ትዕዛዞችዎን በቀጥታ ይከታተሉ እና ለሚኒስቴሩ ሰራተኞች የሚሰጡ በድጎማ ዋጋ ይደሰቱ።</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary hero-btn" id="heroSignInBtn">
+                        <i class="fas fa-sign-in-alt"></i> 
+                        <span class="lang-en">Sign In to Order</span>
+                        <span class="lang-am">ለማዘዝ ግባ</span>
                     </button>
-                    <button onclick="showSection('orders')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-shopping-cart mr-3"></i>Orders
-                    </button>
-                    <button onclick="showSection('menu')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-utensils mr-3"></i>Menu Management
-                    </button>
-                    <button onclick="showSection('inventory')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-boxes mr-3"></i>Inventory
-                    </button>
-                    <button onclick="showSection('customers')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-users mr-3"></i>Customers
-                    </button>
-                    <button onclick="showSection('reports')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-chart-bar mr-3"></i>Reports
-                    </button>
-                    <button onclick="showSection('kitchen')" class="nav-btn w-full text-left px-4 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-fire mr-3"></i>Kitchen Display
+                    <button class="btn btn-secondary hero-btn" id="heroSignUpBtn">
+                        <i class="fas fa-user-plus"></i> 
+                        <span class="lang-en">Create Account</span>
+                        <span class="lang-am">መለያ ፍጠር</span>
                     </button>
                 </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="features">
+                <div class="section-title">
+                    <h2 class="lang-en">Cafeteria Services</h2>
+                    <h2 class="lang-am">የካፌቴሪያ አገልግሎቶች</h2>
+                    <p class="lang-en">Modern digital cafeteria services designed for the convenience of Ministry employees and visitors.</p>
+                    <p class="lang-am">ለሚኒስቴር መስሪያ ቤቱ ሰራተኞች እና ጎብኝዎች ምቾት ተብሎ የተነደፈ ዘመናዊ የዲጂታል ካፍቴሪያ አገልግሎት።</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="lang-en">Digital Ordering</h3>
+                        <h3 class="lang-am">ዲጂታል ትዕዛዝ</h3>
+                        <p class="lang-en">Order your favorite meals online from anywhere in the Ministry building. Skip the queue and save time with our digital platform.</p>
+                        <p class="lang-am">በሚኒስቴር መስሪያ ቤቱ ውስጥ ከየትኛውም ቦታ ሆነው የሚወዷቸውን ምግቦች በመስመር ላይ ይዘዙ። ወረፋውን ይዝለሉ እና በእኛ ዲጂታል መድረክ ጊዜ ይቆጥቡ።</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background-color: var(--success);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="lang-en">Employee Benefits</h3>
+                        <h3 class="lang-am">የሰራተኛ ጥቅሞች</h3>
+                        <p class="lang-en">Ministry employees enjoy subsidized pricing on all menu items. Special discounts and loyalty rewards for regular customers.</p>
+                        <p class="lang-am">የሚኒስቴር መስሪያ ቤቱ ሰራተኞች በሁሉም የሜኑ እቃዎች ላይ በድጎማ ዋጋ ይደሰታሉ። ለመደበኛ ደንበኞች ልዩ ቅናሾች እና የታማኝነት ሽልማቶች።</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background-color: var(--warning);">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="lang-en">Fresh & Healthy</h3>
+                        <h3 class="lang-am">ትኩስ እና ጤናማ</h3>
+                        <!--p class="lang-en">Traditional Ethiopian cuisine and international dishes prepared fresh daily. Nutritious meals to keep our healthcare workers energized.</p>
+                        
+                         
+                        <p class="lang-am">ባህላዊ የኢትዮጵያ ምግቦች እና ዓለም አቀፍ ምግቦች በየቀኑ ትኩስ ይዘጋጃሉ። የጤና ሠራተኞቻችንን ኃይለኛ ለማድረግ ማጣቃሚያ ምግቦች።</p>
+                    </div>
+                </div-->
+            </section>
+
+            <!-- Menu Section -->
+            <section class="menu-section">
+                <div class="menu-header">
+                    <div class="section-title" style="text-align: left; margin-bottom: 0;">
+                        <h2 class="lang-en">Today's Menu</h2>
+                        <h2 class="lang-am">የዛሬ ምግብ ዝርዝር</h2>
+                        <p class="lang-en">Fresh meals prepared daily by our kitchen staff</p>
+                        <p class="lang-am">በየቀኑ በማእድ ቤታችን ሰራተኞች የሚዘጋጁ ትኩስ ምግቦች</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" id="viewFullMenuBtn">
+                            <i class="fas fa-utensils"></i> 
+                            <span class="lang-en">View Full Menu</span>
+                            <span class="lang-am">ሙሉ ዝርዝር ይመልከቱ</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    <!-- Menu items will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section class="services">
+                <div class="section-title">
+                    <h2 class="lang-en">Why Choose Our System</h2>
+                    <h2 class="lang-am">ስርዓታችንን ለምን መምረጥ ያስፈልግዎታል</h2>
+                    <p class="lang-en">We provide the best digital cafeteria experience for Ministry of Health employees</p>
+                    <p class="lang-am">ለየጤና ሚኒስቴር ሰራተኞች ምርጡን ዲጂታል ካፌቴሪያ ተሞክሮ እናቀርባለን</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="lang-en">Real-time Tracking</h4>
+                        <h4 class="lang-am">ቀጥታ መከታተያ</h4>
+                        <p class="lang-en">Track your order status from preparation to pickup</p>
+                        <p class="lang-am">ትዕዛዝዎን ከማዘጋጀት እስከ መውሰድ ድረስ ይከታተሉ</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="lang-en">Secure Platform</h4>
+                        <h4 class="lang-am">ደህንነቱ የተጠበቀ መድረክ</h4>
+                        <p class="lang-en">Your personal information is protected with enterprise security</p>
+                        <p class="lang-am">የግል መረጃዎ በድርጅታዊ ደህንነት ይጠበቃል</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h4 class="lang-en">Bilingual Support</h4>
+                        <h4 class="lang-am">የባለ ሁለት ቋንቋ ድጋፍ</h4>
+                        <p class="lang-en">Available in both English and Amharic languages</p>
+                        <p class="lang-am">በእንግሊዝኛ እና አማርኛ ቋንቋዎች ይገኛል</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="lang-en">Health Focus</h4>
+                        <h4 class="lang-am">ጤና ላይ ትኩረት</h4>
+                        <p class="lang-en">Nutritious meals supporting the health of our workforce</p>
+                        <p class="lang-am">የሰው ሃይላችንን ጤና የሚደግፉ የተመጣጠኑ ምግቦች</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-utensils" style="color: white; font-size: 1.8rem;"></i>
+                        <div>
+                            <h3 class="lang-en">Ministry of Health</h3>
+                            <h3 class="lang-am">የጤና ሚኒስቴር</h3>
+                            <p class="lang-en">Ethiopia</p>
+                            <p class="lang-am">ኢትዮጵያ</p>
+                        </div>
+                    </div>
+                    <p class="lang-en">Healthier Citizens for Prosperous Nation!</p>
+                    <p class="lang-am">ለተስፋ ያለው ሀገር ጤናማ ዜጎች!</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="lang-en">Quick Links</h4>
+                    <h4 class="lang-am">ፈጣን አገናኞች</h4>
+                    <ul>
+                        <li><a href="#" id="footerSignIn">
+                            <span class="lang-en">Sign In</span>
+                            <span class="lang-am">ግባ</span>
+                        </a></li>
+                        <li><a href="#" id="footerSignUp">
+                            <span class="lang-en">Create Account</span>
+                            <span class="lang-am">መለያ ፍጠር</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="lang-en">Contact Support</span>
+                            <span class="lang-am">ድጋፍ ያግኙ</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="lang-en">System Status</span>
+                            <span class="lang-am">የስርዓት ሁኔታ</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="lang-en">Contact Info</h4>
+                    <h4 class="lang-am">የመገኛ መረጃ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 
+                        <span class="lang-en">Addis Ababa, Ethiopia</span>
+                        <span class="lang-am">አዲስ አበባ፣ ኢትዮጵያ</span>
+                    </p>
+                    <p><i class="fas fa-phone"></i> +251-11-551-7011</p>
+                    <p><i class="fas fa-envelope"></i> info@moh.gov.et</p>
+                    <p><i class="fas fa-globe"></i> www.moh.gov.et</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2025 Ministry of Health Ethiopia. All rights reserved.</p>
+                <p class="lang-am">&copy; 2018 የኢትዮጵያ ጤና ጥበቃ ሚኒስቴር። ሁሉም መብቶች የተጠበቁ ናቸው።</p>
             </div>
         </div>
+    </footer>
 
-        <!-- Content Area -->
-        <div class="flex-1 overflow-auto">
-            <!-- Dashboard Section -->
-            <div id="dashboard" class="section p-6">
-                <h2 class="text-3xl font-bold mb-6">Dashboard Overview</h2>
-                
-                <!-- Stats Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Today's Orders</p>
-                                <p class="text-3xl font-bold text-primary">127</p>
-                            </div>
-                            <i class="fas fa-shopping-cart text-4xl text-primary opacity-20"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Revenue</p>
-                                <p class="text-3xl font-bold text-green-600">12,450 ETB</p>
-                            </div>
-                            <i class="fas fa-money-bill-wave text-4xl text-green-600 opacity-20"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Active Customers</p>
-                                <p class="text-3xl font-bold text-blue-600">89</p>
-                            </div>
-                            <i class="fas fa-users text-4xl text-blue-600 opacity-20"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-gray-600 dark:text-gray-400 text-sm">Low Stock Items</p>
-                                <p class="text-3xl font-bold text-red-600">7</p>
-                            </div>
-                            <i class="fas fa-exclamation-triangle text-4xl text-red-600 opacity-20"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4">Recent Orders</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded">
-                                <div>
-                                    <p class="font-medium">#ORD-001</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Employee ID: EMP123</p>
-                                </div>
-                                <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Completed</span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded">
-                                <div>
-                                    <p class="font-medium">#ORD-002</p>
-                                    <p class="text-sm text-gray-600 dark:text-gray-400">Employee ID: EMP456</p>
-                                </div>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">In Progress</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-                        <h3 class="text-xl font-bold mb-4">Popular Items Today</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between">
-                                <span>ሻሻ (Tea)</span>
-                                <span class="font-bold">34 orders</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>ሻሻሻ ሻሻ (Meat Dish)</span>
-                                <span class="font-bold">28 orders</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>ሻሻሻሻ (Coffee)</span>
-                                <span class="font-bold">22 orders</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Sign In Modal -->
+    <div class="modal" id="signInModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="lang-en">Sign In to Your Account</h3>
+                <h3 class="lang-am">ወደ መለያዎ ይግቡ</h3>
+                <button class="close-btn" id="closeSignInModal">&times;</button>
             </div>
-
-            <!-- Orders Section -->
-            <div id="orders" class="section p-6 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold">Order Management</h2>
-                    <button onclick="createNewOrder()" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg">
-                        <i class="fas fa-plus mr-2"></i>New Order
+            <div class="modal-body">
+                <form id="signInForm">
+                    <div class="form-group">
+                        <label for="employeeId" class="lang-en">Employee ID</label>
+                        <label for="employeeId" class="lang-am">የሰራተኛ መታወቂያ</label>
+                        <input type="text" id="employeeId" class="form-control" 
+                               placeholder="Enter your Employee ID" 
+                               data-placeholder-en="Enter your Employee ID"
+                               data-placeholder-am="የሰራተኛ መታወቂያዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="lang-en">Password</label>
+                        <label for="password" class="lang-am">የይለፍ ቃል</label>
+                        <input type="password" id="password" class="form-control" 
+                               placeholder="Enter your password"
+                               data-placeholder-en="Enter your password"
+                               data-placeholder-am="የይለፍ ቃልዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe" class="lang-en">Remember me</label>
+                            <label for="rememberMe" class="lang-am">አስታውሰኝ</label>
+                        </div>
+                        <a href="#" style="color: var(--primary);" class="lang-en">Forgot password?</a>
+                        <a href="#" style="color: var(--primary);" class="lang-am">የይለፍ ቃል ረሳህ?</a>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <span class="lang-en">Sign In</span>
+                        <span class="lang-am">ግባ</span>
                     </button>
-                </div>
-
-                <!-- Order Filters -->
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow mb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <select class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                            <option>All Status</option>
-                            <option>New</option>
-                            <option>In Progress</option>
-                            <option>Completed</option>
-                        </select>
-                        <input type="date" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                        <input type="text" placeholder="Customer ID" class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                        <button class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg">Filter</button>
-                    </div>
-                </div>
-
-                <!-- Orders Table -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                    <table class="w-full">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Order ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Customer</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Items</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Total</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ordersTableBody" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <!-- Orders will be populated here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Menu Management Section -->
-            <div id="menu" class="section p-6 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold">Menu Management</h2>
-                    <button onclick="addMenuItem()" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg">
-                        <i class="fas fa-plus mr-2"></i>Add Item
-                    </button>
-                </div>
-
-                <!-- Menu Categories -->
-                <div class="mb-6">
-                    <div class="flex space-x-4">
-                        <button onclick="filterMenu('all')" class="menu-filter-btn px-4 py-2 bg-primary text-white rounded-lg">All Items</button>
-                        <button onclick="filterMenu('beverages')" class="menu-filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg">Beverages</button>
-                        <button onclick="filterMenu('meals')" class="menu-filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg">Meals</button>
-                        <button onclick="filterMenu('snacks')" class="menu-filter-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg">Snacks</button>
-                    </div>
-                </div>
-
-                <!-- Menu Items Grid -->
-                <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- Menu items will be populated here -->
-                </div>
-            </div>
-
-            <!-- Inventory Section -->
-            <div id="inventory" class="section p-6 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold">Inventory Management</h2>
-                    <button onclick="addInventoryItem()" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg">
-                        <i class="fas fa-plus mr-2"></i>Add Item
-                    </button>
-                </div>
-
-                <!-- Inventory Alerts -->
-                <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
-                    <h3 class="text-red-800 dark:text-red-200 font-bold mb-2">Low Stock Alerts</h3>
-                    <div class="space-y-2">
-                        <p class="text-red-700 dark:text-red-300">• Rice - Only 5kg remaining</p>
-                        <p class="text-red-700 dark:text-red-300">• Coffee beans - Only 2kg remaining</p>
-                        <p class="text-red-700 dark:text-red-300">• Plates - Only 15 pieces remaining</p>
-                    </div>
-                </div>
-
-                <!-- Inventory Table -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                    <table class="w-full">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Item Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Current Stock</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Reorder Level</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="inventoryTableBody" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <!-- Inventory items will be populated here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Customers Section -->
-            <div id="customers" class="section p-6 hidden">
-                <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-3xl font-bold">Customer Management</h2>
-                    <button onclick="addCustomer()" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg">
-                        <i class="fas fa-plus mr-2"></i>Add Customer
-                    </button>
-                </div>
-
-                <!-- Customer Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                        <h3 class="text-lg font-semibold mb-2">Total Customers</h3>
-                        <p class="text-3xl font-bold text-primary">950</p>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                        <h3 class="text-lg font-semibold mb-2">Employees</h3>
-                        <p class="text-3xl font-bold text-green-600">847</p>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow">
-                        <h3 class="text-lg font-semibold mb-2">Non-Employees</h3>
-                        <p class="text-3xl font-bold text-blue-600">103</p>
-                    </div>
-                </div>
-
-                <!-- Customer Search -->
-                <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow mb-6">
-                    <div class="flex space-x-4">
-                        <input type="text" placeholder="Search customers..." class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                        <select class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                            <option>All Types</option>
-                            <option>Employee</option>
-                            <option>Non-Employee</option>
-                        </select>
-                        <button class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg">Search</button>
-                    </div>
-                </div>
-
-                <!-- Customers Table -->
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
-                    <table class="w-full">
-                        <thead class="bg-gray-50 dark:bg-gray-700">
-                            <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Customer ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Employee Status</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Total Orders</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="customersTableBody" class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                            <!-- Customers will be populated here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Reports Section -->
-            <div id="reports" class="section p-6 hidden">
-                <h2 class="text-3xl font-bold mb-6">Reports & Analytics</h2>
-
-                <!-- Report Types -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="generateReport('sales')">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold">Sales Report</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Revenue and transactions</p>
-                            </div>
-                            <i class="fas fa-chart-line text-4xl text-green-600 opacity-20"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="generateReport('consumption')">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold">Food Consumption</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Popular items and trends</p>
-                            </div>
-                            <i class="fas fa-utensils text-4xl text-orange-600 opacity-20"></i>
-                        </div>
-                    </div>
-                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow cursor-pointer hover:shadow-lg transition-shadow" onclick="generateReport('attendance')">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <h3 class="text-xl font-bold">Attendance Report</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Customer visits and patterns</p>
-                            </div>
-                            <i class="fas fa-users text-4xl text-blue-600 opacity-20"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Report Display Area -->
-                <div id="reportDisplay" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-4">Select a report type to view analytics</h3>
-                    <p class="text-gray-600 dark:text-gray-400">Click on one of the report cards above to generate detailed reports and visualizations.</p>
-                </div>
-            </div>
-
-            <!-- Kitchen Display Section -->
-            <div id="kitchen" class="section p-6 hidden">
-                <h2 class="text-3xl font-bold mb-6">Kitchen Display System</h2>
-
-                <!-- Order Queue -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- New Orders -->
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-red-600">New Orders</h3>
-                        <div id="newOrders" class="space-y-4">
-                            <!-- New orders will be displayed here -->
-                        </div>
-                    </div>
-
-                    <!-- In Progress -->
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-yellow-600">In Progress</h3>
-                        <div id="inProgressOrders" class="space-y-4">
-                            <!-- In progress orders will be displayed here -->
-                        </div>
-                    </div>
-
-                    <!-- Ready -->
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-green-600">Ready</h3>
-                        <div id="readyOrders" class="space-y-4">
-                            <!-- Ready orders will be displayed here -->
-                        </div>
-                    </div>
-                </div>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <span class="lang-en">Don't have an account? </span>
+                    <span class="lang-am">መለያ የሎትም? </span>
+                    <a href="#" id="switchToSignUp" style="color: var(--primary);">
+                        <span class="lang-en">Sign up here</span>
+                        <span class="lang-am">እዚህ ይመዝገቡ</span>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- Modals -->
-    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50"></div>
-    
-    <!-- New Order Modal -->
-    <div id="newOrderModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <h3 class="text-2xl font-bold mb-4">Create New Order</h3>
-            
-            <!-- Customer Selection -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium mb-2">Customer</label>
-                <div class="flex space-x-4">
-                    <input type="text" placeholder="Customer ID or Name" class="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                    <select class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                        <option>Employee</option>
-                        <option>Non-Employee</option>
-                    </select>
-                </div>
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signUpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="lang-en">Create New Account</h3>
+                <h3 class="lang-am">አዲስ መለያ ይፍጠሩ</h3>
+                <button class="close-btn" id="closeSignUpModal">&times;</button>
             </div>
-
-            <!-- Menu Items -->
-            <div class="mb-6">
-                <h4 class="text-lg font-semibold mb-3">Select Items</h4>
-                <div id="orderMenuItems" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-60 overflow-y-auto">
-                    <!-- Menu items for ordering will be populated here -->
-                </div>
-            </div>
-
-            <!-- Order Summary -->
-            <div class="mb-6">
-                <h4 class="text-lg font-semibold mb-3">Order Summary</h4>
-                <div id="orderSummary" class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
-                    <p class="text-gray-600 dark:text-gray-400">No items selected</p>
-                </div>
-            </div>
-
-            <!-- Payment Method -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium mb-2">Payment Method</label>
-                <select class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-base">
-                    <option>Cash</option>
-                    <option>Credit Card</option>
-                </select>
-            </div>
-
-            <div class="flex justify-end space-x-4">
-                <button onclick="closeModal('newOrderModal')" class="px-6 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">Cancel</button>
-                <button onclick="submitOrder()" class="px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg">Create Order</button>
+            <div class="modal-body">
+                <form id="signUpForm">
+                    <div class="form-group">
+                        <label for="fullName" class="lang-en">Full Name</label>
+                        <label for="fullName" class="lang-am">ሙሉ ስም</label>
+                        <input type="text" id="fullName" class="form-control" 
+                               placeholder="Enter your full name"
+                               data-placeholder-en="Enter your full name"
+                               data-placeholder-am="ሙሉ ስምዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newEmployeeId" class="lang-en">Employee ID</label>
+                        <label for="newEmployeeId" class="lang-am">የሰራተኛ መታወቂያ</label>
+                        <input type="text" id="newEmployeeId" class="form-control" 
+                               placeholder="Enter your Employee ID"
+                               data-placeholder-en="Enter your Employee ID"
+                               data-placeholder-am="የሰራተኛ መታወቂያዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="lang-en">Email Address</label>
+                        <label for="email" class="lang-am">የኢሜይል አድራሻ</label>
+                        <input type="email" id="email" class="form-control" 
+                               placeholder="Enter your email"
+                               data-placeholder-en="Enter your email"
+                               data-placeholder-am="ኢሜይልዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department" class="lang-en">Department</label>
+                        <label for="department" class="lang-am">የስራ ክፍል</label>
+                        <select id="department" class="form-control" required>
+                            <option value="" class="lang-en">Select Department</option>
+                            <option value="" class="lang-am">የስራ ክፍል ይምረጡ</option>
+                            <option value="Public Health" class="lang-en">Public Health</option>
+                            <option value="Public Health" class="lang-am">የህዝብ ጤና</option>
+                            <option value="Healthcare Services" class="lang-en">Healthcare Services</option>
+                            <option value="Healthcare Services" class="lang-am">የጤና አገልግሎቶች</option>
+                            <option value="Policy & Planning" class="lang-en">Policy & Planning</option>
+                            <option value="Policy & Planning" class="lang-am">ፖሊሲ እና እቅድ</option>
+                            <option value="Human Resources" class="lang-en">Human Resources</option>
+                            <option value="Human Resources" class="lang-am">ሰው ሀብት</option>
+                            <option value="Finance" class="lang-en">Finance</option>
+                            <option value="Finance" class="lang-am">ፋይናንስ</option>
+                            <option value="IT" class="lang-en">Information Technology</option>
+                            <option value="IT" class="lang-am">ኢንፎርሜሽንቴክኖሎጂ</option>
+                            <option value="Administration" class="lang-en">Administration</option>
+                            <option value="Administration" class="lang-am">አስተዳደር</option>
+                            <option value="Other" class="lang-en">Other</option>
+                            <option value="Other" class="lang-am">ሌላ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword" class="lang-en">Password</label>
+                        <label for="newPassword" class="lang-am">የይለፍ ቃል</label>
+                        <input type="password" id="newPassword" class="form-control" 
+                               placeholder="Create a password"
+                               data-placeholder-en="Create a password"
+                               data-placeholder-am="የይለፍ ቃል ይፍጠሩ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="lang-en">Confirm Password</label>
+                        <label for="confirmPassword" class="lang-am">የይለፍ ቃል ያረጋግጡ</label>
+                        <input type="password" id="confirmPassword" class="form-control" 
+                               placeholder="Confirm your password"
+                               data-placeholder-en="Confirm your password"
+                               data-placeholder-am="የይለፍ ቃልዎን ያረጋግጡ" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms" class="lang-en">I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></label>
+                        <label for="agreeTerms" class="lang-am">ከ <a href="#" style="color: var(--primary);">የአገልግሎት ውሎች</a> እና <a href="#" style="color: var(--primary);">የግላዊነት ፖሊሲ</a> ጋር ተስማምቻለሁ</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <span class="lang-en">Create Account</span>
+                        <span class="lang-am">መለያ ፍጠር</span>
+                    </button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <span class="lang-en">Already have an account? </span>
+                    <span class="lang-am">ቀድሞውኑ መለያ አለዎት? </span>
+                    <a href="#" id="switchToSignIn" style="color: var(--primary);">
+                        <span class="lang-en">Sign in here</span>
+                        <span class="lang-am">እዚህ ይግቡ</span>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
 
-    <script>
-        // Dark mode support
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (event.matches) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        });
-
-        // Sample menu data from the document
-        const menuItems = [
-            { id: 1, name: "ሻሻ", nameEn: "Tea", price: 5, employeePrice: 10, category: "beverages" },
-            { id: 2, name: "ሻሻ", nameEn: "Tea (Large)", price: 5, employeePrice: 15, category: "beverages" },
-            { id: 3, name: "½ ሻሻሻ ሻሻ", nameEn: "Half Meat Dish", price: 15, employeePrice: 10, category: "meals" },
-            { id: 4, name: "1 ሻሻሻ ሻሻ", nameEn: "Full Meat Dish", price: 20, employeePrice: 30, category: "meals" },
-            { id: 5, name: "2 ሻሻሻ ሻሻ", nameEn: "Double Meat Dish", price: 25, employeePrice: 35, category: "meals" },
-            { id: 6, name: "ሻሻ", nameEn: "Coffee", price: 10, employeePrice: 15, category: "beverages" },
-            { id: 7, name: "ሻሻሻሻ", nameEn: "Special Coffee", price: 10, employeePrice: 20, category: "beverages" },
-            { id: 8, name: "ሻሻሻሻ ሻሻሻሻ", nameEn: "Macchiato", price: 20, employeePrice: 80, category: "beverages" },
-            { id: 9, name: "ሻሻሻሻ ሻሻሻሻሻ", nameEn: "Cappuccino", price: 30, employeePrice: 100, category: "beverages" },
-            { id: 15, name: "ሻሻሻሻ", nameEn: "Pasta", price: 45, employeePrice: 150, category: "meals" },
-            { id: 20, name: "ሻሻሻ", nameEn: "Juice", price: 20, employeePrice: 100, category: "beverages" },
-            { id: 29, name: "ሻሻ ሻሻ/ሻሻሻ (tuna)", nameEn: "Tuna Sandwich", price: 45, employeePrice: 150, category: "meals" },
-            { id: 32, name: "ሻሻሻ ሻሻሻ (mahebrawi)", nameEn: "Traditional Meal", price: 50, employeePrice: 200, category: "meals" }
-        ];
-
-        // Sample order data
-        let orders = [
-            { id: "ORD-001", customerId: "EMP123", customerName: "John Doe", items: ["Tea", "Coffee"], total: 25, status: "Completed", time: "10:30 AM" },
-            { id: "ORD-002", customerId: "EMP456", customerName: "Jane Smith", items: ["Pasta", "Juice"], total: 250, status: "In Progress", time: "11:15 AM" },
-            { id: "ORD-003", customerId: "GUEST789", customerName: "Mike Johnson", items: ["Tuna Sandwich"], total: 150, status: "New", time: "11:45 AM" }
-        ];
-
-        // Sample inventory data
-        let inventory = [
-            { id: 1, name: "Rice", stock: 5, reorderLevel: 10, unit: "kg", status: "Low Stock" },
-            { id: 2, name: "Coffee Beans", stock: 2, reorderLevel: 5, unit: "kg", status: "Low Stock" },
-            { id: 3, name: "Plates", stock: 15, reorderLevel: 20, unit: "pieces", status: "Low Stock" },
-            { id: 4, name: "Tea Bags", stock: 50, reorderLevel: 30, unit: "boxes", status: "In Stock" },
-            { id: 5, name: "Pasta", stock: 25, reorderLevel: 15, unit: "kg", status: "In Stock" }
-        ];
-
-        // Sample customer data
-        let customers = [
-            { id: "EMP123", name: "John Doe", status: "Employee", totalOrders: 45 },
-            { id: "EMP456", name: "Jane Smith", status: "Employee", totalOrders: 32 },
-            { id: "GUEST789", name: "Mike Johnson", status: "Non-Employee", totalOrders: 8 }
-        ];
-
-        // Navigation functions
-        function showSection(sectionId) {
-            // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.classList.add('hidden');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId).classList.remove('hidden');
-            
-            // Update navigation buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('text-gray-700', 'dark:text-gray-300');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('text-gray-700', 'dark:text-gray-300');
-
-            // Load section-specific data
-            switch(sectionId) {
-                case 'orders':
-                    loadOrders();
-                    break;
-                case 'menu':
-                    loadMenu();
-                    break;
-                case 'inventory':
-                    loadInventory();
-                    break;
-                case 'customers':
-                    loadCustomers();
-                    break;
-                case 'kitchen':
-                    loadKitchenOrders();
-                    break;
-            }
-        }
-
-        // Load orders
-        function loadOrders() {
-            const tbody = document.getElementById('ordersTableBody');
-            tbody.innerHTML = '';
-            
-            orders.forEach(order => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">${order.id}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">${order.customerName}<br><small class="text-gray-500">${order.customerId}</small></td>
-                    <td class="px-6 py-4 text-sm">${order.items.join(', ')}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">${order.total} ETB</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(order.status)}">
-                            ${order.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <button onclick="updateOrderStatus('${order.id}')" class="text-indigo-600 hover:text-indigo-900 mr-3">Update</button>
-                        <button onclick="viewOrder('${order.id}')" class="text-green-600 hover:text-green-900">View</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load menu
-        function loadMenu() {
-            const grid = document.getElementById('menuGrid');
-            grid.innerHTML = '';
-            
-            menuItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow';
-                card.innerHTML = `
-                    <h4 class="font-bold text-lg mb-2">${item.name}</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2">${item.nameEn}</p>
-                    <div class="flex justify-between items-center mb-3">
-                        <div>
-                            <p class="text-sm text-gray-500">Employee: ${item.price} ETB</p>
-                            <p class="text-sm text-gray-500">Non-Employee: ${item.employeePrice} ETB</p>
-                        </div>
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${item.category}</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="editMenuItem(${item.id})" class="flex-1 bg-primary hover:bg-primary-dark text-white px-3 py-2 rounded text-sm">Edit</button>
-                        <button onclick="toggleAvailability(${item.id})" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm">Toggle</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Load inventory
-        function loadInventory() {
-            const tbody = document.getElementById('inventoryTableBody');
-            tbody.innerHTML = '';
-            
-            inventory.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">${item.name}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">${item.stock} ${item.unit}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">${item.reorderLevel} ${item.unit}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${item.status === 'Low Stock' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}">
-                            ${item.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <button onclick="updateStock(${item.id})" class="text-indigo-600 hover:text-indigo-900 mr-3">Update</button>
-                        <button onclick="reorderItem(${item.id})" class="text-green-600 hover:text-green-900">Reorder</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load customers
-        function loadCustomers() {
-            const tbody = document.getElementById('customersTableBody');
-            tbody.innerHTML = '';
-            
-            customers.forEach(customer => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">${customer.id}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">${customer.name}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${customer.status === 'Employee' ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-800'}">
-                            ${customer.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">${customer.totalOrders}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm">
-                        <button onclick="viewCustomer('${customer.id}')" class="text-indigo-600 hover:text-indigo-900 mr-3">View</button>
-                        <button onclick="editCustomer('${customer.id}')" class="text-green-600 hover:text-green-900">Edit</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-        }
-
-        // Load kitchen orders
-        function loadKitchenOrders() {
-            const newOrdersDiv = document.getElementById('newOrders');
-            const inProgressDiv = document.getElementById('inProgressOrders');
-            const readyDiv = document.getElementById('readyOrders');
-            
-            newOrdersDiv.innerHTML = '';
-            inProgressDiv.innerHTML = '';
-            readyDiv.innerHTML = '';
-            
-            orders.forEach(order => {
-                const orderCard = document.createElement('div');
-                orderCard.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow';
-                orderCard.innerHTML = `
-                    <div class="flex justify-between items-start mb-2">
-                        <h4 class="font-bold">${order.id}</h4>
-                        <span class="text-xs text-gray-500">${order.time}</span>
-                    </div>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">${order.customerName}</p>
-                    <div class="text-sm mb-3">
-                        ${order.items.map(item => `<p>• ${item}</p>`).join('')}
-                    </div>
-                    <div class="flex space-x-2">
-                        ${getKitchenButtons(order.id, order.status)}
-                    </div>
-                `;
-                
-                switch(order.status) {
-                    case 'New':
-                        newOrdersDiv.appendChild(orderCard);
-                        break;
-                    case 'In Progress':
-                        inProgressDiv.appendChild(orderCard);
-                        break;
-                    case 'Completed':
-                        readyDiv.appendChild(orderCard);
-                        break;
-                }
-            });
-        }
-
-        // Helper functions
-        function getStatusColor(status) {
-            switch(status) {
-                case 'New': return 'bg-yellow-100 text-yellow-800';
-                case 'In Progress': return 'bg-blue-100 text-blue-800';
-                case 'Completed': return 'bg-green-100 text-green-800';
-                default: return 'bg-gray-100 text-gray-800';
-            }
-        }
-
-        function getKitchenButtons(orderId, status) {
-            switch(status) {
-                case 'New':
-                    return '<button onclick="startOrder(\'' + orderId + '\')" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Start</button>';
-                case 'In Progress':
-                    return '<button onclick="completeOrder(\'' + orderId + '\')" class="flex-1 bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded text-sm">Complete</button>';
-                case 'Completed':
-                    return '<span class="text-green-600 text-sm font-medium">Ready for pickup</span>';
-                default:
-                    return '';
-            }
-        }
-
-        // Modal functions
-        function createNewOrder() {
-            document.getElementById('modalOverlay').classList.remove('hidden');
-            document.getElementById('newOrderModal').classList.remove('hidden');
-            loadOrderMenuItems();
-        }
-
-        function closeModal(modalId) {
-            document.getElementById('modalOverlay').classList.add('hidden');
-            document.getElementById(modalId).classList.add('hidden');
-        }
-
-        function loadOrderMenuItems() {
-            const container = document.getElementById('orderMenuItems');
-            container.innerHTML = '';
-            
-            menuItems.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'border border-gray-300 dark:border-gray-600 p-3 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700';
-                itemDiv.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h5 class="font-medium">${item.name} (${item.nameEn})</h5>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Emp: ${item.price} ETB | Non-Emp: ${item.employeePrice} ETB</p>
-                        </div>
-                        <button onclick="addToOrder(${item.id})" class="bg-primary hover:bg-primary-dark text-white px-3 py-1 rounded text-sm">Add</button>
-                    </div>
-                `;
-                container.appendChild(itemDiv);
-            });
-        }
-
-        // Order management functions
-        let currentOrder = [];
-
-        function addToOrder(itemId) {
-            const item = menuItems.find(i => i.id === itemId);
-            if (item) {
-                const existingItem = currentOrder.find(i => i.id === itemId);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    currentOrder.push({ ...item, quantity: 1 });
-                }
-                updateOrderSummary();
-            }
-        }
-
-        function updateOrderSummary() {
-            const summaryDiv = document.getElementById('orderSummary');
-            if (currentOrder.length === 0) {
-                summaryDiv.innerHTML = '<p class="text-gray-600 dark:text-gray-400">No items selected</p>';
-                return;
-            }
-
-            let total = 0;
-            const itemsHtml = currentOrder.map(item => {
-                const price = item.price; // Assume employee pricing for now
-                const subtotal = price * item.quantity;
-                total += subtotal;
-                return `
-                    <div class="flex justify-between items-center mb-2">
-                        <span>${item.name} (${item.nameEn}) x${item.quantity}</span>
-                        <span>${subtotal} ETB</span>
-                    </div>
-                `;
-            }).join('');
-
-            summaryDiv.innerHTML = `
-                ${itemsHtml}
-                <hr class="my-2">
-                <div class="flex justify-between items-center font-bold">
-                    <span>Total:</span>
-                    <span>${total} ETB</span>
-                </div>
-            `;
-        }
-
-        function submitOrder() {
-            if (currentOrder.length === 0) {
-                showAlert('Please add items to the order');
-                return;
-            }
-
-            const newOrderId = 'ORD-' + String(Date.now()).slice(-3);
-            const newOrder = {
-                id: newOrderId,
-                customerId: "EMP" + Math.floor(Math.random() * 1000),
-                customerName: "New Customer",
-                items: currentOrder.map(item => item.nameEn),
-                total: currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-                status: "New",
-                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
-            };
-
-            orders.push(newOrder);
-            currentOrder = [];
-            closeModal('newOrderModal');
-            showAlert('Order created successfully!');
-            
-            // Refresh orders if currently viewing
-            if (!document.getElementById('orders').classList.contains('hidden')) {
-                loadOrders();
-            }
-        }
-
-        // Kitchen functions
-        function startOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'In Progress';
-                loadKitchenOrders();
-            }
-        }
-
-        function completeOrder(orderId) {
-            const order = orders.find(o => o.id === orderId);
-            if (order) {
-                order.status = 'Completed';
-                loadKitchenOrders();
-            }
-        }
-
-        // Report functions
-        function generateReport(type) {
-            const reportDisplay = document.getElementById('reportDisplay');
-            
-            switch(type) {
-                case 'sales':
-                    reportDisplay.innerHTML = `
-                        <h3 class="text-xl font-bold mb-4">Sales Report</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                            <div class="text-center">
-                                <p class="text-3xl font-bold text-green-600">12,450 ETB</p>
-                                <p class="text-gray-600 dark:text-gray-400">Today's Revenue</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-3xl font-bold text-blue-600">127</p>
-                                <p class="text-gray-600 dark:text-gray-400">Total Orders</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-3xl font-bold text-purple-600">98 ETB</p>
-                                <p class="text-gray-600 dark:text-gray-400">Average Order</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-400">Detailed sales analytics and trends would be displayed here with charts and graphs.</p>
-                    `;
-                    break;
-                case 'consumption':
-                    reportDisplay.innerHTML = `
-                        <h3 class="text-xl font-bold mb-4">Food Consumption Report</h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded">
-                                <span>ሻሻ (Tea)</span>
-                                <span class="font-bold">34 orders today</span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded">
-                                <span>ሻሻሻ ሻሻ (Meat Dish)</span>
-                                <span class="font-bold">28 orders today</span>
-                            </div>
-                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded">
-                                <span>ሻሻሻሻ (Coffee)</span>
-                                <span class="font-bold">22 orders today</span>
-                            </div>
-                        </div>
-                    `;
-                    break;
-                case 'attendance':
-                    reportDisplay.innerHTML = `
-                        <h3 class="text-xl font-bold mb-4">Attendance Report</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-semibold mb-2">Peak Hours</h4>
-                                <p>12:00 PM - 1:00 PM: 45 customers</p>
-                                <p>8:00 AM - 9:00 AM: 32 customers</p>
-                                <p>3:00 PM - 4:00 PM: 28 customers</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold mb-2">Customer Types</h4>
-                                <p>Employees: 89% (847 people)</p>
-                                <p>Non-Employees: 11% (103 people)</p>
-                            </div>
-                        </div>
-                    `;
-                    break;
-            }
-        }
-
-        // Filter functions
-        function filterMenu(category) {
-            // Update filter buttons
-            document.querySelectorAll('.menu-filter-btn').forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-white');
-                btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-            });
-            event.target.classList.add('bg-primary', 'text-white');
-            event.target.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-
-            // Filter and reload menu
-            const filteredItems = category === 'all' ? menuItems : menuItems.filter(item => item.category === category);
-            const grid = document.getElementById('menuGrid');
-            grid.innerHTML = '';
-            
-            filteredItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'bg-white dark:bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow';
-                card.innerHTML = `
-                    <h4 class="font-bold text-lg mb-2">${item.name}</h4>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2">${item.nameEn}</p>
-                    <div class="flex justify-between items-center mb-3">
-                        <div>
-                            <p class="text-sm text-gray-500">Employee: ${item.price} ETB</p>
-                            <p class="text-sm text-gray-500">Non-Employee: ${item.employeePrice} ETB</p>
-                        </div>
-                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">${item.category}</span>
-                    </div>
-                    <div class="flex space-x-2">
-                        <button onclick="editMenuItem(${item.id})" class="flex-1 bg-primary hover:bg-primary-dark text-white px-3 py-2 rounded text-sm">Edit</button>
-                        <button onclick="toggleAvailability(${item.id})" class="px-3 py-2 bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded text-sm">Toggle</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Placeholder functions for various actions
-        function addMenuItem() { showAlert('Add menu item functionality would be implemented here'); }
-        function editMenuItem(id) { showAlert('Edit menu item functionality would be implemented here'); }
-        function toggleAvailability(id) { showAlert('Toggle availability functionality would be implemented here'); }
-        function addInventoryItem() { showAlert('Add inventory item functionality would be implemented here'); }
-        function updateStock(id) { showAlert('Update stock functionality would be implemented here'); }
-        function reorderItem(id) { showAlert('Reorder item functionality would be implemented here'); }
-        function addCustomer() { showAlert('Add customer functionality would be implemented here'); }
-        function viewCustomer(id) { showAlert('View customer functionality would be implemented here'); }
-        function editCustomer(id) { showAlert('Edit customer functionality would be implemented here'); }
-        function updateOrderStatus(id) { showAlert('Update order status functionality would be implemented here'); }
-        function viewOrder(id) { showAlert('View order functionality would be implemented here'); }
-
-        // Custom alert function (replacing window.alert)
-        function showAlert(message) {
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
-            modal.innerHTML = `
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full mx-4">
-                    <p class="text-gray-700 dark:text-gray-300 mb-4">${message}</p>
-                    <div class="flex justify-end">
-                        <button class="px-4 py-2 bg-primary text-white hover:bg-primary-dark rounded" onclick="this.closest('.fixed').remove()">OK</button>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-        }
-
-    </script>
-    <script src="assets/js/app.js"></script>
+    <script src="yawo.js"></script>
 </body>
 </html>
