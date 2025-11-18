@@ -37,15 +37,15 @@ const menuItems = [
         image: "🍹"
     },
     {
-        id: 4,
+        id: 5, // Corrected id to 5 for "Tea"
         name: "Tea",
         nameAm: "ሻይ",
         price: 10,
         category: "beverages",
-        image: "🍹"
+        image: "☕" // Changed image to coffee for consistency (or use another if available)
     },
     {
-        id: 5,
+        id: 6, // Corrected id to 6 for "Fruit Salad"
         name: "Fruit Salad",
         nameAm: "ፍራፍሬ ሰላጣ",
         description: "Seasonal fresh fruits",
@@ -55,7 +55,7 @@ const menuItems = [
         image: "🍎"
     },
     {
-        id: 6,
+        id: 7, // Corrected id to 7 for "Samosa"
         name: "Samosa",
         nameAm: "ሳሞሳ",
         description: "Crispy pastry with savory filling",
@@ -65,6 +65,9 @@ const menuItems = [
         image: "🥟"
     }
 ];
+
+// NEW: Cart state
+let cart = [];
 
 // DOM elements
 const signInBtn = document.getElementById('signInBtn');
@@ -84,8 +87,12 @@ const signUpForm = document.getElementById('signUpForm');
 const menuGrid = document.getElementById('menuGrid');
 const viewFullMenuBtn = document.getElementById('viewFullMenuBtn');
 const langButtons = document.querySelectorAll('.lang-btn');
+// NEW: Cart DOM elements
+const cartItemsList = document.getElementById('cartItemsList');
+const cartSubtotal = document.getElementById('cartSubtotal');
+const cartTotal = document.getElementById('cartTotal');
 
-// Event listeners for modal triggers
+// Event listeners for modal triggers (unchanged)
 signInBtn.addEventListener('click', () => openModal(signInModal));
 signUpBtn.addEventListener('click', () => openModal(signUpModal));
 heroSignInBtn.addEventListener('click', () => openModal(signInModal));
@@ -99,11 +106,11 @@ footerSignUp.addEventListener('click', (e) => {
     openModal(signUpModal);
 });
 
-// Event listeners for modal closers
+// Event listeners for modal closers (unchanged)
 closeSignInModal.addEventListener('click', () => closeModal(signInModal));
 closeSignUpModal.addEventListener('click', () => closeModal(signUpModal));
 
-// Switch between modals
+// Switch between modals (unchanged)
 switchToSignUp.addEventListener('click', (e) => {
     e.preventDefault();
     closeModal(signInModal);
@@ -116,7 +123,7 @@ switchToSignIn.addEventListener('click', (e) => {
     openModal(signInModal);
 });
 
-// Form submissions
+// Form submissions (unchanged)
 signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const message = currentLang === 'en' ? 
@@ -135,7 +142,7 @@ signUpForm.addEventListener('submit', (e) => {
     closeModal(signUpModal);
 });
 
-// View full menu button
+// View full menu button (unchanged)
 viewFullMenuBtn.addEventListener('click', () => {
     const message = currentLang === 'en' ? 
         'Full menu would be displayed here!' : 
@@ -143,7 +150,7 @@ viewFullMenuBtn.addEventListener('click', () => {
     alert(message);
 });
 
-// Language switching
+// Language switching (modified to include cart render)
 let currentLang = 'en';
 
 langButtons.forEach(button => {
@@ -180,11 +187,12 @@ function switchLanguage(lang) {
         }
     });
     
-    // Reload menu items with correct language
+    // Reload menu items and cart with correct language
     loadMenuItems();
+    renderCart(); // NEW: Rerender cart on language switch
 }
 
-// Modal functions
+// Modal functions (unchanged)
 function openModal(modal) {
     modal.style.display = 'flex';
 }
@@ -193,7 +201,7 @@ function closeModal(modal) {
     modal.style.display = 'none';
 }
 
-// Close modal when clicking outside
+// Close modal when clicking outside (unchanged)
 window.addEventListener('click', (e) => {
     if (e.target === signInModal) {
         closeModal(signInModal);
@@ -203,7 +211,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Load menu items
+// Load menu items (modified to apply language after creation)
 function loadMenuItems() {
     menuGrid.innerHTML = '';
     
@@ -218,13 +226,13 @@ function loadMenuItems() {
                 <h3 class="menu-item-title lang-en">${item.name}</h3>
                 <h3 class="menu-item-title lang-am">${item.nameAm}</h3>
                 <p class="menu-item-description lang-en">${item.description}</p>
-                <p class="menu-item-description lang-am">${item.descriptionAm}</p>
+                <p class="menu-item-description lang-am">${item.descriptionAm || ''}</p>
                 <div class="menu-item-footer">
                     <div class="menu-item-price">${item.price} ETB</div>
-                    <button class="add-to-cart" data-id="${item.id}">
+                    <button class="add-to-cart btn-primary" data-id="${item.id}">
                         <i class="fas fa-cart-plus"></i> 
-                        <span class="lang-en">Add to Cart</span>
-                        <span class="lang-am">ወደ ጋሪ ጨምር</span>
+                        <span class="lang-en">Add to Order</span>
+                        <span class="lang-am">ወደ ትዕዛዝ ጨምር</span>
                     </button>
                 </div>
             </div>
@@ -235,7 +243,9 @@ function loadMenuItems() {
     // Add event listeners to Add to Cart buttons
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', (e) => {
-            const itemId = e.target.closest('.add-to-cart').getAttribute('data-id');
+            // Traverse up to find the button element itself
+            const targetButton = e.target.closest('.add-to-cart');
+            const itemId = targetButton.getAttribute('data-id');
             addToCart(itemId);
         });
     });
@@ -244,23 +254,89 @@ function loadMenuItems() {
     switchLanguage(currentLang);
 }
 
-// Add item to cart
+// NEW: Add item to cart logic
 function addToCart(itemId) {
-    const item = menuItems.find(i => i.id == itemId);
-    if (item) {
-        const message = currentLang === 'en' ? 
-            `Added ${item.name} to cart!` : 
-            `${item.nameAm} ወደ ጋሪ ተጨምሯል!`;
-        alert(message);
-        // In a real application, we would update the cart state here
+    const id = parseInt(itemId);
+    const itemInMenu = menuItems.find(i => i.id === id);
+    
+    if (itemInMenu) {
+        const itemInCart = cart.find(i => i.id === id);
+        
+        if (itemInCart) {
+            itemInCart.quantity += 1; // Increment quantity
+        } else {
+            // Add new item to cart
+            cart.push({
+                ...itemInMenu,
+                quantity: 1
+            });
+        }
+
+        const itemName = currentLang === 'en' ? itemInMenu.name : itemInMenu.nameAm;
+        console.log(`Added ${itemName} to cart. Current cart:`, cart);
+        
+        renderCart();
     }
 }
+
+// NEW: Render Cart UI
+function renderCart() {
+    cartItemsList.innerHTML = '';
+    let subtotal = 0;
+    
+    if (cart.length === 0) {
+        const message = currentLang === 'en' ? 
+            'Your order list is empty. Add items from the menu above.' : 
+            'የትዕዛዝ ዝርዝርዎ ባዶ ነው። ከላይ ካለው የምግብ ዝርዝር ውስጥ እቃዎችን ይጨምሩ።';
+        cartItemsList.innerHTML = `<p class="empty-cart-message">${message}</p>`;
+        cartSubtotal.textContent = '0 ETB';
+        cartTotal.textContent = '0 ETB';
+        return;
+    }
+
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        
+        const itemName = currentLang === 'en' ? item.name : item.nameAm;
+        
+        const cartItemElement = document.createElement('div');
+        cartItemElement.className = 'cart-item-card';
+        cartItemElement.innerHTML = `
+            <div class="cart-item-info">
+                <span class="cart-item-qty">${item.quantity}x</span>
+                <span class="cart-item-name">${itemName}</span>
+            </div>
+            <div class="cart-item-details">
+                <span class="cart-item-price">${itemTotal.toFixed(2)} ETB</span>
+            </div>
+        `;
+        cartItemsList.appendChild(cartItemElement);
+    });
+    
+    // Assuming no tax/discount logic is needed, total equals subtotal
+    const total = subtotal; 
+
+    cartSubtotal.textContent = `${subtotal.toFixed(2)} ETB`;
+    cartTotal.textContent = `${total.toFixed(2)} ETB`;
+    
+    // Re-apply language specific visibility for items rendered inside the cart
+    document.querySelectorAll('.lang-en').forEach(el => {
+        el.style.display = currentLang === 'en' ? 'block' : 'none';
+    });
+    
+    document.querySelectorAll('.lang-am').forEach(el => {
+        el.style.display = currentLang === 'am' ? 'block' : 'none';
+    });
+}
+
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     loadMenuItems();
+    renderCart(); // NEW: Initial cart render
     
-    // Add animation to feature cards on scroll
+    // Add animation to feature cards on scroll (unchanged)
     const featureCards = document.querySelectorAll('.feature-card');
     
     const observer = new IntersectionObserver((entries) => {
