@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministry of Health - Cafeteria Management System</title>
+    <link rel="stylesheet" href="hahu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="FB_IMG_MOH.jpg" alt="Ministry of Health">
+                    </div>
+                    <div class="logo-text">
+                        <h1 class="lang-en">Ministry of Health</h1>
+                        <h1 class="lang-am">ጤና ሚኒስቴር</h1>
+                        <p class="lang-en">Digital Cafeteria Management System</p>
+                        <p class="lang-am">ዲጂታል ካፌቴሪያ አስተዳደር ስርዓት</p>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="en">EN</button>
+                        <button class="lang-btn" data-lang="am">አማ</button>
+                    </div>
+                    <div class="auth-buttons">
+                        <button class="btn btn-primary" id="signInBtn">
+                            <i class="fas fa-sign-in-alt"></i> 
+                            <span class="lang-en">Sign In</span>
+                            <span class="lang-am">ግባ</span>
+                        </button>
+                        <button class="btn btn-secondary" id="signUpBtn">
+                            <i class="fas fa-user-plus"></i> 
+                            <span class="lang-en">Sign Up</span>
+                            <span class="lang-am">ተመዝገብ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="hero">
+                <h1 class="lang-en">Welcome to MoH Cafeteria</h1>
+                <h1 class="lang-am">እንኳን ወደ ጤና ሚኒስቴር ካፌቴሪያ በደህና መጡ</h1>
+                <p class="lang-en">Ministry of Health - Ethiopia Digital Cafeteria Management System</p>
+                <p class="lang-am">ጤና ሚኒስቴር - ኢትዮጵያ ዲጂታል ካፌቴሪያ አስተዳደር ስርዓት</p>
+                <p class="lang-en">Experience modern cafeteria services with our digital platform. Order your favorite meals, track your orders in real-time, and enjoy subsidized pricing for Ministry employees.</p>
+                <p class="lang-am">ዘመናዊ ካፌቴሪያ አገልግሎቶችን በዲጂታል መድረካችን ያግኙ። የሚፈልጉትን ምግቦች ይዘዙ፣ ትዕዛዞችዎን በቀጥታ ይከታተሉ እና ለሚኒስቴሩ ሰራተኞች የሚሰጡ በድጎማ ዋጋ ይደሰቱ።</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary hero-btn" id="heroSignInBtn">
+                        <i class="fas fa-sign-in-alt"></i> 
+                        <span class="lang-en">Sign In to Order</span>
+                        <span class="lang-am">ለማዘዝ ግባ</span>
+                    </button>
+                    <button class="btn btn-secondary hero-btn" id="heroSignUpBtn">
+                        <i class="fas fa-user-plus"></i> 
+                        <span class="lang-en">Create Account</span>
+                        <span class="lang-am">መለያ ፍጠር</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="features">
+                <div class="section-title">
+                    <h2 class="lang-en">Cafeteria Services</h2>
+                    <h2 class="lang-am">የካፌቴሪያ አገልግሎቶች</h2>
+                    <p class="lang-en">Modern digital cafeteria services designed for the convenience of Ministry employees and visitors.</p>
+                    <p class="lang-am">ለሚኒስቴር መስሪያ ቤቱ ሰራተኞች እና ጎብኝዎች ምቾት ተብሎ የተነደፈ ዘመናዊ የዲጂታል ካፍቴሪያ አገልግሎት።</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="lang-en">Digital Ordering</h3>
+                        <h3 class="lang-am">ዲጂታል ትዕዛዝ</h3>
+                        <p class="lang-en">Order your favorite meals online from anywhere in the Ministry building. Skip the queue and save time with our digital platform.</p>
+                        <p class="lang-am">በሚኒስቴር መስሪያ ቤቱ ውስጥ ከየትኛውም ቦታ ሆነው የሚወዷቸውን ምግቦች በመስመር ላይ ይዘዙ። ወረፋውን ይዝለሉ እና በእኛ ዲጂታል መድረክ ጊዜ ይቆጥቡ።</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background-color: var(--success);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 class="lang-en">Employee Benefits</h3>
+                        <h3 class="lang-am">የሰራተኛ ጥቅሞች</h3>
+                        <p class="lang-en">Ministry employees enjoy subsidized pricing on all menu items. Special discounts and loyalty rewards for regular customers.</p>
+                        <p class="lang-am">የሚኒስቴር መስሪያ ቤቱ ሰራተኞች በሁሉም የሜኑ እቃዎች ላይ በድጎማ ዋጋ ይደሰታሉ። ለመደበኛ ደንበኞች ልዩ ቅናሾች እና የታማኝነት ሽልማቶች።</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" style="background-color: var(--warning);">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="lang-en">Fresh & Healthy</h3>
+                        <h3 class="lang-am">ትኩስ እና ጤናማ</h3>
+                        <p class="lang-en">Traditional Ethiopian cuisine and international dishes prepared fresh daily. Nutritious meals to keep our healthcare workers energized.</p>
+                        <p class="lang-am">ባህላዊ የኢትዮጵያ ምግቦች እና ዓለም አቀፍ ምግቦች በየቀኑ ትኩስ ይዘጋጃሉ። የጤና ሠራተኞቻችንን ኃይለኛ ለማድረግ ማጣቃሚያ ምግቦች።</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <div class="menu-header">
+                    <div class="section-title" style="text-align: left; margin-bottom: 0;">
+                        <h2 class="lang-en">Today's Menu</h2>
+                        <h2 class="lang-am">የዛሬ ምግብ ዝርዝር</h2>
+                        <p class="lang-en">Fresh meals prepared daily by our kitchen staff</p>
+                        <p class="lang-am">በየቀኑ በማእድ ቤታችን ሰራተኞች የሚዘጋጁ ትኩስ ምግቦች</p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" id="viewFullMenuBtn">
+                            <i class="fas fa-utensils"></i> 
+                            <span class="lang-en">View Full Menu</span>
+                            <span class="lang-am">ሙሉ ዝርዝር ይመልከቱ</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-grid" id="menuGrid">
+                    </div>
+            </section>
+            
+            <section class="services">
+                <div class="section-title">
+                    <h2 class="lang-en">Why Choose Our System</h2>
+                    <h2 class="lang-am">ስርዓታችንን ለምን መምረጥ ያስፈልግዎታል</h2>
+                    <p class="lang-en">We provide the best digital cafeteria experience for Ministry of Health employees</p>
+                    <p class="lang-am">ለየጤና ሚኒስቴር ሰራተኞች ምርጡን ዲጂታል ካፌቴሪያ ተሞክሮ እናቀርባለን</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4 class="lang-en">Real-time Tracking</h4>
+                        <h4 class="lang-am">ቀጥታ መከታተያ</h4>
+                        <p class="lang-en">Track your order status from preparation to pickup</p>
+                        <p class="lang-am">ትዕዛዝዎን ከማዘጋጀት እስከ መውሰድ ድረስ ይከታተሉ</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4 class="lang-en">Secure Platform</h4>
+                        <h4 class="lang-am">ደህንነቱ የተጠበቀ መድረክ</h4>
+                        <p class="lang-en">Your personal information is protected with enterprise security</p>
+                        <p class="lang-am">የግል መረጃዎ በድርጅታዊ ደህንነት ይጠበቃል</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h4 class="lang-en">Bilingual Support</h4>
+                        <h4 class="lang-am">የባለ ሁለት ቋንቋ ድጋፍ</h4>
+                        <p class="lang-en">Available in both English and Amharic languages</p>
+                        <p class="lang-am">በእንግሊዝኛ እና አማርኛ ቋንቋዎች ይገኛል</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4 class="lang-en">Health Focus</h4>
+                        <h4 class="lang-am">ጤና ላይ ትኩረት</h4>
+                        <p class="lang-en">Nutritious meals supporting the health of our workforce</p>
+                        <p class="lang-am">የሰው ሃይላችንን ጤና የሚደግፉ የተመጣጠኑ ምግቦች</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-utensils" style="color: white; font-size: 1.8rem;"></i>
+                        <div>
+                            <h3 class="lang-en">Ministry of Health</h3>
+                            <h3 class="lang-am">የጤና ሚኒስቴር</h3>
+                            <p class="lang-en">Ethiopia</p>
+                            <p class="lang-am">ኢትዮጵያ</p>
+                        </div>
+                    </div>
+                    <p class="lang-en">Healthier Citizens for Prosperous Nation!</p>
+                    <p class="lang-am">ለተስፋ ያለው ሀገር ጤናማ ዜጎች!</p>
+                </div>
+                <div class="footer-links">
+                    <h4 class="lang-en">Quick Links</h4>
+                    <h4 class="lang-am">ፈጣን አገናኞች</h4>
+                    <ul>
+                        <li><a href="#" id="footerSignIn">
+                            <span class="lang-en">Sign In</span>
+                            <span class="lang-am">ግባ</span>
+                        </a></li>
+                        <li><a href="#" id="footerSignUp">
+                            <span class="lang-en">Create Account</span>
+                            <span class="lang-am">መለያ ፍጠር</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="lang-en">Contact Support</span>
+                            <span class="lang-am">ድጋፍ ያግኙ</span>
+                        </a></li>
+                        <li><a href="#">
+                            <span class="lang-en">System Status</span>
+                            <span class="lang-am">የስርዓት ሁኔታ</span>
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4 class="lang-en">Contact Info</h4>
+                    <h4 class="lang-am">የመገኛ መረጃ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 
+                        <span class="lang-en">Addis Ababa, Ethiopia</span>
+                        <span class="lang-am">አዲስ አበባ፣ ኢትዮጵያ</span>
+                    </p>
+                    <p><i class="fas fa-phone"></i> +251-11-551-7011</p>
+                    <p><i class="fas fa-envelope"></i> info@moh.gov.et</p>
+                    <p><i class="fas fa-globe"></i> www.moh.gov.et</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="lang-en">&copy; 2025 Ministry of Health Ethiopia. All rights reserved.</p>
+                <p class="lang-am">&copy; 2018 የኢትዮጵያ ጤና ጥበቃ ሚኒስቴር። ሁሉም መብቶች የተጠበቁ ናቸው።</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="signInModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="lang-en">Sign In to Your Account</h3>
+                <h3 class="lang-am">ወደ መለያዎ ይግቡ</h3>
+                <button class="close-btn" id="closeSignInModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signInForm">
+                    <div class="form-group">
+                        <label for="employeeId" class="lang-en">Employee ID</label>
+                        <label for="employeeId" class="lang-am">የሰራተኛ መታወቂያ</label>
+                        <input type="text" id="employeeId" class="form-control" 
+                               placeholder="Enter your Employee ID" 
+                               data-placeholder-en="Enter your Employee ID"
+                               data-placeholder-am="የሰራተኛ መታወቂያዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="lang-en">Password</label>
+                        <label for="password" class="lang-am">የይለፍ ቃል</label>
+                        <input type="password" id="password" class="form-control" 
+                               placeholder="Enter your password"
+                               data-placeholder-en="Enter your password"
+                               data-placeholder-am="የይለፍ ቃልዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <input type="checkbox" id="rememberMe">
+                            <label for="rememberMe" class="lang-en">Remember me</label>
+                            <label for="rememberMe" class="lang-am">አስታውሰኝ</label>
+                        </div>
+                        <a href="#" style="color: var(--primary);" class="lang-en">Forgot password?</a>
+                        <a href="#" style="color: var(--primary);" class="lang-am">የይለፍ ቃል ረሳህ?</a>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <span class="lang-en">Sign In</span>
+                        <span class="lang-am">ግባ</span>
+                    </button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <span class="lang-en">Don't have an account? </span>
+                    <span class="lang-am">መለያ የሎትም? </span>
+                    <a href="#" id="switchToSignUp" style="color: var(--primary);">
+                        <span class="lang-en">Sign up here</span>
+                        <span class="lang-am">እዚህ ይመዝገቡ</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signUpModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="lang-en">Create New Account</h3>
+                <h3 class="lang-am">አዲስ መለያ ይፍጠሩ</h3>
+                <button class="close-btn" id="closeSignUpModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signUpForm">
+                    <div class="form-group">
+                        <label for="fullName" class="lang-en">Full Name</label>
+                        <label for="fullName" class="lang-am">ሙሉ ስም</label>
+                        <input type="text" id="fullName" class="form-control" 
+                               placeholder="Enter your full name"
+                               data-placeholder-en="Enter your full name"
+                               data-placeholder-am="ሙሉ ስምዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newEmployeeId" class="lang-en">Employee ID</label>
+                        <label for="newEmployeeId" class="lang-am">የሰራተኛ መታወቂያ</label>
+                        <input type="text" id="newEmployeeId" class="form-control" 
+                               placeholder="Enter your Employee ID"
+                               data-placeholder-en="Enter your Employee ID"
+                               data-placeholder-am="የሰራተኛ መታወቂያዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="lang-en">Email Address</label>
+                        <label for="email" class="lang-am">የኢሜይል አድራሻ</label>
+                        <input type="email" id="email" class="form-control" 
+                               placeholder="Enter your email"
+                               data-placeholder-en="Enter your email"
+                               data-placeholder-am="ኢሜይልዎን ያስገቡ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="department" class="lang-en">Department</label>
+                        <label for="department" class="lang-am">የስራ ክፍል</label>
+                        <select id="department" class="form-control" required>
+                            <option value="" class="lang-en">Select Department</option>
+                            <option value="" class="lang-am">የስራ ክፍል ይምረጡ</option>
+                            <option value="Public Health" class="lang-en">Public Health</option>
+                            <option value="Public Health" class="lang-am">የህዝብ ጤና</option>
+                            <option value="Healthcare Services" class="lang-en">Healthcare Services</option>
+                            <option value="Healthcare Services" class="lang-am">የጤና አገልግሎቶች</option>
+                            <option value="Policy & Planning" class="lang-en">Policy & Planning</option>
+                            <option value="Policy & Planning" class="lang-am">ፖሊሲ እና እቅድ</option>
+                            <option value="Human Resources" class="lang-en">Human Resources</option>
+                            <option value="Human Resources" class="lang-am">ሰው ሀብት</option>
+                            <option value="Finance" class="lang-en">Finance</option>
+                            <option value="Finance" class="lang-am">ፋይናንስ</option>
+                            <option value="IT" class="lang-en">Information Technology</option>
+                            <option value="IT" class="lang-am">ኢንፎርሜሽንቴክኖሎጂ</option>
+                            <option value="Administration" class="lang-en">Administration</option>
+                            <option value="Administration" class="lang-am">አስተዳደር</option>
+                            <option value="Other" class="lang-en">Other</option>
+                            <option value="Other" class="lang-am">ሌላ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword" class="lang-en">Password</label>
+                        <label for="newPassword" class="lang-am">የይለፍ ቃል</label>
+                        <input type="password" id="newPassword" class="form-control" 
+                               placeholder="Create a password"
+                               data-placeholder-en="Create a password"
+                               data-placeholder-am="የይለፍ ቃል ይፍጠሩ" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="lang-en">Confirm Password</label>
+                        <label for="confirmPassword" class="lang-am">የይለፍ ቃል ያረጋግጡ</label>
+                        <input type="password" id="confirmPassword" class="form-control" 
+                               placeholder="Confirm your password"
+                               data-placeholder-en="Confirm your password"
+                               data-placeholder-am="የይለፍ ቃልዎን ያረጋግጡ" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms" class="lang-en">I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and <a href="#" style="color: var(--primary);">Privacy Policy</a></label>
+                        <label for="agreeTerms" class="lang-am">ከ <a href="#" style="color: var(--primary);">የአገልግሎት ውሎች</a> እና <a href="#" style="color: var(--primary);">የግላዊነት ፖሊሲ</a> ጋር ተስማምቻለሁ</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                        <span class="lang-en">Create Account</span>
+                        <span class="lang-am">መለያ ፍጠር</span>
+                    </button>
+                </form>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <span class="lang-en">Already have an account? </span>
+                    <span class="lang-am">ቀድሞውኑ መለያ አለዎት? </span>
+                    <a href="#" id="switchToSignIn" style="color: var(--primary);">
+                        <span class="lang-en">Sign in here</span>
+                        <span class="lang-am">እዚህ ይግቡ</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal" id="orderModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 class="lang-en">Your Real-time Order</h3>
+                <h3 class="lang-am">የእርስዎ የአሁን ትዕዛዝ</h3>
+                <button class="close-btn" id="closeOrderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="cart-container-modal">
+                    <div class="cart-items-list" id="cartItemsList">
+                        </div>
+                    <div class="cart-summary">
+                        <h3 class="lang-en">Order Summary</h3>
+                        <h3 class="lang-am">የትዕዛዝ ማጠቃለያ</h3>
+                        <div class="summary-line">
+                            <span class="lang-en">Subtotal:</span>
+                            <span class="lang-am">ጠቅላላ ዋጋ:</span>
+                            <span id="cartSubtotal">0 ETB</span>
+                        </div>
+                        <div class="summary-line total-line">
+                            <span class="lang-en">Total:</span>
+                            <span class="lang-am">ድምር:</span>
+                            <span id="cartTotal">0 ETB</span>
+                        </div>
+                        <button class="btn btn-secondary" style="width: 100%; margin-top: 1rem;">
+                            <i class="fas fa-paper-plane"></i>
+                            <span class="lang-en">Place Order</span>
+                            <span class="lang-am">ትዕዛዝ አስገባ</span>
+                        </button>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <span class="lang-en">Finished ordering? </span>
+                    <span class="lang-am">ማዘዝ ጨርሰዋል? </span>
+                    <a href="#" id="continueBrowsing" style="color: var(--primary);">
+                        <span class="lang-en">Continue Browsing Menu</span>
+                        <span class="lang-am">ወደ ምናሌው ይመለሱ</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="yawo.js"></script>
+</body>
+</html>
 
