@@ -1,4 +1,4 @@
-// Menu data
+// Menu data: Corrected duplicate IDs
 const menuItems = [
     {
         id: 1,
@@ -37,15 +37,15 @@ const menuItems = [
         image: "🍹"
     },
     {
-        id: 5, // Corrected id to 5 for "Tea"
+        id: 5, 
         name: "Tea",
         nameAm: "ሻይ",
         price: 10,
         category: "beverages",
-        image: "☕" // Changed image to coffee for consistency (or use another if available)
+        image: "☕"
     },
     {
-        id: 6, // Corrected id to 6 for "Fruit Salad"
+        id: 6, 
         name: "Fruit Salad",
         nameAm: "ፍራፍሬ ሰላጣ",
         description: "Seasonal fresh fruits",
@@ -55,7 +55,7 @@ const menuItems = [
         image: "🍎"
     },
     {
-        id: 7, // Corrected id to 7 for "Samosa"
+        id: 7, 
         name: "Samosa",
         nameAm: "ሳሞሳ",
         description: "Crispy pastry with savory filling",
@@ -78,8 +78,11 @@ const footerSignIn = document.getElementById('footerSignIn');
 const footerSignUp = document.getElementById('footerSignUp');
 const signInModal = document.getElementById('signInModal');
 const signUpModal = document.getElementById('signUpModal');
+const orderModal = document.getElementById('orderModal'); // NEW
 const closeSignInModal = document.getElementById('closeSignInModal');
 const closeSignUpModal = document.getElementById('closeSignUpModal');
+const closeOrderModal = document.getElementById('closeOrderModal'); // NEW
+const continueBrowsing = document.getElementById('continueBrowsing'); // NEW
 const switchToSignUp = document.getElementById('switchToSignUp');
 const switchToSignIn = document.getElementById('switchToSignIn');
 const signInForm = document.getElementById('signInForm');
@@ -106,9 +109,17 @@ footerSignUp.addEventListener('click', (e) => {
     openModal(signUpModal);
 });
 
-// Event listeners for modal closers (unchanged)
+// Event listeners for modal closers (updated)
 closeSignInModal.addEventListener('click', () => closeModal(signInModal));
 closeSignUpModal.addEventListener('click', () => closeModal(signUpModal));
+closeOrderModal.addEventListener('click', () => closeModal(orderModal)); // NEW
+
+// NEW: Continue browsing button closes order modal
+continueBrowsing.addEventListener('click', (e) => {
+    e.preventDefault();
+    closeModal(orderModal);
+});
+
 
 // Switch between modals (unchanged)
 switchToSignUp.addEventListener('click', (e) => {
@@ -123,23 +134,21 @@ switchToSignIn.addEventListener('click', (e) => {
     openModal(signInModal);
 });
 
-// Form submissions (unchanged)
+// Form submissions (MODIFIED to open orderModal)
 signInForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const message = currentLang === 'en' ? 
-        'Sign In functionality would be implemented here!' : 
-        'የመግባት ተግባር እዚህ ይተገበራል!';
-    alert(message);
+    // Simulate successful login
     closeModal(signInModal);
+    openModal(orderModal); // Open the cart/order modal
+    // In a real app, successful sign-in would load user's existing cart
 });
 
 signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    const message = currentLang === 'en' ? 
-        'Sign Up functionality would be implemented here!' : 
-        'የመመዝገቢያ ተግባር እዚህ ይተገበራል!';
-    alert(message);
+    // Simulate successful signup/login
     closeModal(signUpModal);
+    openModal(orderModal); // Open the cart/order modal
+    // In a real app, successful sign-up would load empty cart
 });
 
 // View full menu button (unchanged)
@@ -189,7 +198,7 @@ function switchLanguage(lang) {
     
     // Reload menu items and cart with correct language
     loadMenuItems();
-    renderCart(); // NEW: Rerender cart on language switch
+    renderCart(); // Rerender cart on language switch
 }
 
 // Modal functions (unchanged)
@@ -201,13 +210,16 @@ function closeModal(modal) {
     modal.style.display = 'none';
 }
 
-// Close modal when clicking outside (unchanged)
+// Close modal when clicking outside (updated)
 window.addEventListener('click', (e) => {
     if (e.target === signInModal) {
         closeModal(signInModal);
     }
     if (e.target === signUpModal) {
         closeModal(signUpModal);
+    }
+    if (e.target === orderModal) { // NEW
+        closeModal(orderModal);
     }
 });
 
@@ -247,6 +259,10 @@ function loadMenuItems() {
             const targetButton = e.target.closest('.add-to-cart');
             const itemId = targetButton.getAttribute('data-id');
             addToCart(itemId);
+            // After adding to cart, open the order modal if not already open.
+            if (orderModal.style.display !== 'flex') {
+                openModal(orderModal);
+            }
         });
     });
     
@@ -271,9 +287,6 @@ function addToCart(itemId) {
                 quantity: 1
             });
         }
-
-        const itemName = currentLang === 'en' ? itemInMenu.name : itemInMenu.nameAm;
-        console.log(`Added ${itemName} to cart. Current cart:`, cart);
         
         renderCart();
     }
@@ -286,8 +299,8 @@ function renderCart() {
     
     if (cart.length === 0) {
         const message = currentLang === 'en' ? 
-            'Your order list is empty. Add items from the menu above.' : 
-            'የትዕዛዝ ዝርዝርዎ ባዶ ነው። ከላይ ካለው የምግብ ዝርዝር ውስጥ እቃዎችን ይጨምሩ።';
+            'Your order list is empty. Add items from the menu.' : 
+            'የትዕዛዝ ዝርዝርዎ ባዶ ነው። ከምናሌው እቃዎችን ይጨምሩ።';
         cartItemsList.innerHTML = `<p class="empty-cart-message">${message}</p>`;
         cartSubtotal.textContent = '0 ETB';
         cartTotal.textContent = '0 ETB';
@@ -320,7 +333,8 @@ function renderCart() {
     cartSubtotal.textContent = `${subtotal.toFixed(2)} ETB`;
     cartTotal.textContent = `${total.toFixed(2)} ETB`;
     
-    // Re-apply language specific visibility for items rendered inside the cart
+    // Re-apply language specific visibility for elements inside the modal
+    // Note: This is redundant if switchLanguage is called, but ensures content inside cart is correct
     document.querySelectorAll('.lang-en').forEach(el => {
         el.style.display = currentLang === 'en' ? 'block' : 'none';
     });
@@ -334,7 +348,7 @@ function renderCart() {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     loadMenuItems();
-    renderCart(); // NEW: Initial cart render
+    renderCart(); // Initial cart render
     
     // Add animation to feature cards on scroll (unchanged)
     const featureCards = document.querySelectorAll('.feature-card');
